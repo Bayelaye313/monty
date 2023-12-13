@@ -1,13 +1,13 @@
 #include "monty.h"
 
 /**
-* f_pall - function that prints everything in the stack
+* _pall - function that prints everything in the stack
 * @top: double top pointer to the stack
 * @counter: unused line count
 *
 * Return: nothing
 */
-void f_pall(stack_t **top, unsigned int counter)
+void _pall(stack_t **top, unsigned int counter)
 {
 	stack_t *h;
 	(void)counter;
@@ -23,13 +23,13 @@ void f_pall(stack_t **top, unsigned int counter)
 }
 
 /**
-* f_swap - function that swaps the top two elements of the stack
+* _swap - function that swaps the top two elements of the stack
 * @top: top of stack
 * @counter: line count
 *
 * Return: nothing
 */
-void f_swap(stack_t **top, unsigned int counter)
+void _swap(stack_t **top, unsigned int counter)
 {
 	stack_t *h;
 	int length = 0, temp;
@@ -43,8 +43,8 @@ void f_swap(stack_t **top, unsigned int counter)
 	if (length < 2)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", counter);
-		fclose(bus.file);
-		free(bus.content);
+		fclose(arg.script);
+		free(arg.content);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}

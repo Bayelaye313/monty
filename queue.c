@@ -1,17 +1,17 @@
 #include "monty.h"
 
 /**
-* f_queue - function that prints the top of the queue
+* _queue - function that prints the top of the queue
 * @top: top of queue
 * @counter: line count
 *
 * Return: nothing
 */
-void f_queue(stack_t **top, unsigned int counter)
+void _queue(stack_t **top, unsigned int counter)
 {
 	(void)top;
 	(void)counter;
-	bus.lifi = 1;
+	arg.linenum = 1;
 }
 
 /**

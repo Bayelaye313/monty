@@ -1,13 +1,13 @@
 #include "monty.h"
 
 /**
-* f_rotr - function that rotates the stack to the bottom
+* _rotr - function that rotates the stack to the bottom
 * @top: stack top of the stack
 * @counter: line count
 *
 * Return: nothing
 */
-void f_rotr(stack_t **top, __attribute__((unused)) unsigned int counter)
+void _rotr(stack_t **top, __attribute__((unused)) unsigned int counter)
 {
 	stack_t *copy;
 

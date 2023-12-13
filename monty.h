@@ -41,52 +41,52 @@ typedef struct instruction_s
 
 
 /**
-* struct bus_s - variables -args, file, line content
-* @arg: value
-* @file: pointer to monty file
+* struct arg_s - variables -args, file, line content
+* @tok: value
+* @script: pointer to monty file
 * @content: line content
-* @lifi: flag change stack <-> queue
+* @linenum: flag change stack <-> queue
 *
 * Description: carries values through the program
 */
-typedef struct bus_s
+typedef struct arg_s
 {
-	char *arg;
-	FILE *file;
+	char *tok;
+	FILE *script;
 	char *content;
-	int lifi;
-}  bus_t;
-extern bus_t bus;
+	int linenum;
+}  arg_t;
+extern arg_t arg;
 
 /* opstack.c */
-void f_push(stack_t **top, unsigned int number);
-void f_pop(stack_t **top, unsigned int counter);
-void f_swap(stack_t **top, unsigned int counter);
-void f_rotl(stack_t **top, unsigned int counter);
-void f_rotr(stack_t **top, __attribute__((unused)) unsigned int counter);
+void _push(stack_t **top, unsigned int number);
+void _pop(stack_t **top, unsigned int counter);
+void _swap(stack_t **top, unsigned int counter);
+void _rotl(stack_t **top, unsigned int counter);
+void _rotr(stack_t **top, __attribute__((unused)) unsigned int counter);
 
 /* opprint.c */
-void f_pall(stack_t **top, unsigned int number);
-void f_pint(stack_t **top, unsigned int number);
-void f_pchar(stack_t **top, unsigned int counter);
-void f_pstr(stack_t **top, unsigned int counter);
+void _pall(stack_t **top, unsigned int number);
+void _pint(stack_t **top, unsigned int number);
+void _pchar(stack_t **top, unsigned int counter);
+void _pstr(stack_t **top, unsigned int counter);
 
 /* opmath.c */
-void f_add(stack_t **top, unsigned int counter);
-void f_sub(stack_t **top, unsigned int counter);
-void f_div(stack_t **top, unsigned int counter);
-void f_mul(stack_t **top, unsigned int counter);
-void f_mod(stack_t **top, unsigned int counter);
+void _add(stack_t **top, unsigned int counter);
+void _sub(stack_t **top, unsigned int counter);
+void _div(stack_t **top, unsigned int counter);
+void _mul(stack_t **top, unsigned int counter);
+void _mod(stack_t **top, unsigned int counter);
 
 
 char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 ssize_t getstdin(char **lineptr, int file);
 char  *clean_line(char *content);
 int execute(char *content, stack_t **top, unsigned int counter, FILE *file);
-void f_nop(stack_t **top, unsigned int counter);
+void _nop(stack_t **top, unsigned int counter);
 void free_stack(stack_t *top);
 void addnode(stack_t **top, int n);
 void addqueue(stack_t **top, int n);
-void f_queue(stack_t **top, unsigned int counter);
-void f_stack(stack_t **top, unsigned int counter);
+void _queue(stack_t **top, unsigned int counter);
+void _stack(stack_t **top, unsigned int counter);
 #endif

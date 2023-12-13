@@ -20,15 +20,15 @@ void free_stack(stack_t *top)
 }
 
 /**
-* f_stack - function that prints the top
+* _stack - function that prints the top
 * @top: top of stack
 * @counter: line count
 *
 * Return: nothing
 */
-void f_stack(stack_t **top, unsigned int counter)
+void _stack(stack_t **top, unsigned int counter)
 {
 	(void)top;
 	(void)counter;
-	bus.lifi = 0;
+	arg.linenum = 0;
 }
