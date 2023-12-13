@@ -2,17 +2,17 @@
 
 /**
 * f_pall - function that prints everything in the stack
-* @head: double head pointer to the stack
+* @top: double top pointer to the stack
 * @counter: unused line count
 *
 * Return: nothing
 */
-void f_pall(stack_t **head, unsigned int counter)
+void f_pall(stack_t **top, unsigned int counter)
 {
 	stack_t *h;
 	(void)counter;
 
-	h = *head;
+	h = *top;
 	if (h == NULL)
 		return;
 	while (h)
@@ -24,17 +24,17 @@ void f_pall(stack_t **head, unsigned int counter)
 
 /**
 * f_swap - function that swaps the top two elements of the stack
-* @head: head of stack
+* @top: top of stack
 * @counter: line count
 *
 * Return: nothing
 */
-void f_swap(stack_t **head, unsigned int counter)
+void f_swap(stack_t **top, unsigned int counter)
 {
 	stack_t *h;
 	int length = 0, temp;
 
-	h = *head;
+	h = *top;
 	while (h)
 	{
 		h = h->next;
@@ -45,10 +45,10 @@ void f_swap(stack_t **head, unsigned int counter)
 		fprintf(stderr, "L%d: can't swap, stack too short\n", counter);
 		fclose(bus.file);
 		free(bus.content);
-		free_stack(*head);
+		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
-	h = *head;
+	h = *top;
 	temp = h->n;
 	h->n = h->next->n;
 	h->next->n = temp;

@@ -2,14 +2,14 @@
 
 /**
 * f_queue - function that prints the top of the queue
-* @head: head of queue
+* @top: top of queue
 * @counter: line count
 *
 * Return: nothing
 */
-void f_queue(stack_t **head, unsigned int counter)
+void f_queue(stack_t **top, unsigned int counter)
 {
-	(void)head;
+	(void)top;
 	(void)counter;
 	bus.lifi = 1;
 }
@@ -17,15 +17,15 @@ void f_queue(stack_t **head, unsigned int counter)
 /**
 * addqueue - function that add node to the tail the queue
 * @n: new value
-* @head: head of the queue
+* @top: top of the queue
 *
 * Return: nothing
 */
-void addqueue(stack_t **head, int n)
+void addqueue(stack_t **top, int n)
 {
 	stack_t *new_node, *temp;
 
-	temp = *head;
+	temp = *top;
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
@@ -40,7 +40,7 @@ void addqueue(stack_t **head, int n)
 	}
 	if (!temp)
 	{
-		*head = new_node;
+		*top = new_node;
 		new_node->prev = NULL;
 	}
 	else

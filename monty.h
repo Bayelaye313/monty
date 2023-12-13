@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <ctype.h>
 
+/*--- Struct Definitions ---*/
 /**
 * struct stack_s - doubly linked list representation of a stack (or queue)
 * @n: integer
@@ -57,28 +58,35 @@ typedef struct bus_s
 }  bus_t;
 extern bus_t bus;
 
+/* opstack.c */
+void f_push(stack_t **top, unsigned int number);
+void f_pop(stack_t **top, unsigned int counter);
+void f_swap(stack_t **top, unsigned int counter);
+void f_rotl(stack_t **top, unsigned int counter);
+void f_rotr(stack_t **top, __attribute__((unused)) unsigned int counter);
+
+/* opprint.c */
+void f_pall(stack_t **top, unsigned int number);
+void f_pint(stack_t **top, unsigned int number);
+void f_pchar(stack_t **top, unsigned int counter);
+void f_pstr(stack_t **top, unsigned int counter);
+
+/* opmath.c */
+void f_add(stack_t **top, unsigned int counter);
+void f_sub(stack_t **top, unsigned int counter);
+void f_div(stack_t **top, unsigned int counter);
+void f_mul(stack_t **top, unsigned int counter);
+void f_mod(stack_t **top, unsigned int counter);
+
+
 char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 ssize_t getstdin(char **lineptr, int file);
 char  *clean_line(char *content);
-void f_push(stack_t **head, unsigned int number);
-void f_pall(stack_t **head, unsigned int number);
-void f_pint(stack_t **head, unsigned int number);
-int execute(char *content, stack_t **head, unsigned int counter, FILE *file);
-void free_stack(stack_t *head);
-void f_pop(stack_t **head, unsigned int counter);
-void f_swap(stack_t **head, unsigned int counter);
-void f_add(stack_t **head, unsigned int counter);
-void f_nop(stack_t **head, unsigned int counter);
-void f_sub(stack_t **head, unsigned int counter);
-void f_div(stack_t **head, unsigned int counter);
-void f_mul(stack_t **head, unsigned int counter);
-void f_mod(stack_t **head, unsigned int counter);
-void f_pchar(stack_t **head, unsigned int counter);
-void f_pstr(stack_t **head, unsigned int counter);
-void f_rotl(stack_t **head, unsigned int counter);
-void f_rotr(stack_t **head, __attribute__((unused)) unsigned int counter);
-void addnode(stack_t **head, int n);
-void addqueue(stack_t **head, int n);
-void f_queue(stack_t **head, unsigned int counter);
-void f_stack(stack_t **head, unsigned int counter);
+int execute(char *content, stack_t **top, unsigned int counter, FILE *file);
+void f_nop(stack_t **top, unsigned int counter);
+void free_stack(stack_t *top);
+void addnode(stack_t **top, int n);
+void addqueue(stack_t **top, int n);
+void f_queue(stack_t **top, unsigned int counter);
+void f_stack(stack_t **top, unsigned int counter);
 #endif
