@@ -39,9 +39,9 @@ typedef struct instruction_s
 
 /**
  * union montyfunctype - Union containing different function pointers
- * @toponly: Function pointer for operations that only affect the top
+ * @toponly: Function pointer for operations that only affect the top of the stack
  * @pushmode: Function pointer for push operations with different modes
- * @topbot: Function pointer for operations affecting both the top and bottom
+ * @topbot: Function pointer for operations affecting both the top and bottom of the stack
  */
 union montyfunctype
 {
