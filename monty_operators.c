@@ -3,11 +3,11 @@
 /**
 * _add - function that adds the top two elements of the stack
 * @top: double pointer top to the stack
-* @counter: line count
+* @line_num: line count
 *
 * Return: nothing
 */
-void _add(stack_t **top, unsigned int counter)
+void _add(stack_t **top, unsigned int line_num)
 {
 	stack_t *h;
 	int length = 0, temp;
@@ -20,7 +20,7 @@ void _add(stack_t **top, unsigned int counter)
 	}
 	if (length < 2)
 	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", counter);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_num);
 		fclose(arg.script);
 		free(arg.content);
 		free_stack(*top);
@@ -36,11 +36,11 @@ void _add(stack_t **top, unsigned int counter)
 /**
 * _sub - function that substracts nodes
 * @top: double top pointer to the stack
-* @counter: line count
+* @line_num: line count
 *
 * Return: nothing
 */
-void _sub(stack_t **top, unsigned int counter)
+void _sub(stack_t **top, unsigned int line_num)
 {
 	stack_t *temp;
 	int sub, nd;
@@ -50,7 +50,7 @@ void _sub(stack_t **top, unsigned int counter)
 		temp = temp->next;
 	if (nd < 2)
 	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", counter);
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_num);
 		fclose(arg.script);
 		free(arg.content);
 		free_stack(*top);
@@ -66,11 +66,11 @@ void _sub(stack_t **top, unsigned int counter)
 /**
 * _mul - function that multiplies the top two elements of the stack
 * @top: double top pointer to the stack
-* @counter: line count
+* @line_num: line count
 *
 * Return: nothing
 */
-void _mul(stack_t **top, unsigned int counter)
+void _mul(stack_t **top, unsigned int line_num)
 {
 	stack_t *h;
 	int length = 0, temp;
@@ -83,7 +83,7 @@ void _mul(stack_t **top, unsigned int counter)
 	}
 	if (length < 2)
 	{
-		fprintf(stderr, "L%d: can't mul, stack too short\n", counter);
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_num);
 		fclose(arg.script);
 		free(arg.content);
 		free_stack(*top);
@@ -99,11 +99,11 @@ void _mul(stack_t **top, unsigned int counter)
 /**
 * _div - function that divides the top two elements of the stack
 * @top: double top pointer to the stack
-* @counter: line count
+* @line_num: line count
 *
 * Return: nothing
 */
-void _div(stack_t **top, unsigned int counter)
+void _div(stack_t **top, unsigned int line_num)
 {
 	stack_t *h;
 	int length = 0, temp;
@@ -116,7 +116,7 @@ void _div(stack_t **top, unsigned int counter)
 	}
 	if (length < 2)
 	{
-		fprintf(stderr, "L%d: can't div, stack too short\n", counter);
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_num);
 		fclose(arg.script);
 		free(arg.content);
 		free_stack(*top);
@@ -125,7 +125,7 @@ void _div(stack_t **top, unsigned int counter)
 	h = *top;
 	if (h->n == 0)
 	{
-		fprintf(stderr, "L%d: division by zero\n", counter);
+		fprintf(stderr, "L%d: division by zero\n", line_num);
 		fclose(arg.script);
 		free(arg.content);
 		free_stack(*top);
@@ -141,11 +141,11 @@ void _div(stack_t **top, unsigned int counter)
 * _mod - function that computes the remainder of the division of the second
 * top element of the stack by the top element of the stack
 * @top: double top pointer to the stack
-* @counter: line count
+* @line_num: line count
 *
 * Return: nothing
 */
-void _mod(stack_t **top, unsigned int counter)
+void _mod(stack_t **top, unsigned int line_num)
 {
 	stack_t *h;
 	int length = 0, temp;
@@ -158,7 +158,7 @@ void _mod(stack_t **top, unsigned int counter)
 	}
 	if (length < 2)
 	{
-		fprintf(stderr, "L%d: can't mod, stack too short\n", counter);
+		fprintf(stderr, "L%d: can't mod, stack too short\n", line_num);
 		fclose(arg.script);
 		free(arg.content);
 		free_stack(*top);
@@ -167,7 +167,7 @@ void _mod(stack_t **top, unsigned int counter)
 	h = *top;
 	if (h->n == 0)
 	{
-		fprintf(stderr, "L%d: division by zero\n", counter);
+		fprintf(stderr, "L%d: division by zero\n", line_num);
 		fclose(arg.script);
 		free(arg.content);
 		free_stack(*top);

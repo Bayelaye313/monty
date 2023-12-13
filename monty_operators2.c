@@ -3,14 +3,14 @@
 /**
 * _pall - function that prints everything in the stack
 * @top: double top pointer to the stack
-* @counter: unused line count
+* @line_num: unused line count
 *
 * Return: nothing
 */
-void _pall(stack_t **top, unsigned int counter)
+void _pall(stack_t **top, unsigned int line_num)
 {
 	stack_t *h;
-	(void)counter;
+	(void)line_num;
 
 	h = *top;
 	if (h == NULL)
@@ -25,11 +25,11 @@ void _pall(stack_t **top, unsigned int counter)
 /**
 * _swap - function that swaps the top two elements of the stack
 * @top: top of stack
-* @counter: line count
+* @line_num: line count
 *
 * Return: nothing
 */
-void _swap(stack_t **top, unsigned int counter)
+void _swap(stack_t **top, unsigned int line_num)
 {
 	stack_t *h;
 	int length = 0, temp;
@@ -42,7 +42,7 @@ void _swap(stack_t **top, unsigned int counter)
 	}
 	if (length < 2)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", counter);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_num);
 		fclose(arg.script);
 		free(arg.content);
 		free_stack(*top);

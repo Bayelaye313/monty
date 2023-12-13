@@ -3,14 +3,14 @@
 /**
 * _queue - function that prints the top of the queue
 * @top: top of queue
-* @counter: line count
+* @linenum: line count
 *
 * Return: nothing
 */
-void _queue(stack_t **top, unsigned int counter)
+void _queue(stack_t **top, unsigned int linenum)
 {
 	(void)top;
-	(void)counter;
+	(void)linenum;
 	arg.linenum = 1;
 }
 

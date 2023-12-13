@@ -3,14 +3,14 @@
 
 /**
 * execute - function that executes the opcode
-* @stack: head stack linked list
-* @counter: line count
-* @file: pointer to monty file stream
+* @top: head stack linked list
+* @linenum: line count
+* @script: pointer to monty file stream
 * @content: line content
 *
 * Return: nothing
 */
-int execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
+int execute(char *content, stack_t **top, unsigned int linenum, FILE *script)
 {
 	instruction_t opst[] = {
 				{"push", _push}, {"pall", _pall}, {"pint", _pint},
@@ -40,16 +40,16 @@ int execute(char *content, stack_t **stack, unsigned int counter, FILE *file)
 	while (opst[i].opcode && op)
 	{
 		if (strcmp(op, opst[i].opcode) == 0)
-		{	opst[i].f(stack, counter);
+		{	opst[i].f(top, linenum);
 			return (0);
 		}
 		i++;
 	}
 	if (op && opst[i].opcode == NULL)
-	{ fprintf(stderr, "L%d: unknown instruction %s\n", counter, op);
-		fclose(file);
+	{ fprintf(stderr, "L%d: unknown instruction %s\n", linenum, op);
+		fclose(script);
 		free(content);
-		free_stack(*stack);
+		free_stack(*top);
 		exit(EXIT_FAILURE); }
 	return (1);
 }

@@ -3,11 +3,11 @@
 /**
 * _rotl- function that rotates the stack to the top
 * @top: top of the stack
-* @counter: line count
+* @line_num: line count
 *
 * Return: nothing
 */
-void _rotl(stack_t **top,  __attribute__((unused)) unsigned int counter)
+void _rotl(stack_t **top,  __attribute__((unused)) unsigned int line_num)
 {
 	stack_t *tmp = *top, *aux;
 

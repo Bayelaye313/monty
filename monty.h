@@ -36,7 +36,7 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+	void (*f)(stack_t **stack, unsigned int linenum);
 } instruction_t;
 
 
@@ -59,34 +59,34 @@ typedef struct arg_s
 extern arg_t arg;
 
 /* opstack.c */
-void _push(stack_t **top, unsigned int number);
-void _pop(stack_t **top, unsigned int counter);
-void _swap(stack_t **top, unsigned int counter);
-void _rotl(stack_t **top, unsigned int counter);
-void _rotr(stack_t **top, __attribute__((unused)) unsigned int counter);
+void _push(stack_t **top, unsigned int linenum);
+void _pop(stack_t **top, unsigned int linenum);
+void _swap(stack_t **top, unsigned int linenum);
+void _rotl(stack_t **top, unsigned int linenum);
+void _rotr(stack_t **top, __attribute__((unused)) unsigned int linenum);
 
 /* opprint.c */
-void _pall(stack_t **top, unsigned int number);
-void _pint(stack_t **top, unsigned int number);
-void _pchar(stack_t **top, unsigned int counter);
-void _pstr(stack_t **top, unsigned int counter);
+void _pall(stack_t **top, unsigned int linenum);
+void _pint(stack_t **top, unsigned int linenum);
+void _pchar(stack_t **top, unsigned int linenum);
+void _pstr(stack_t **top, unsigned int linenum);
 
 /* opmath.c */
-void _add(stack_t **top, unsigned int counter);
-void _sub(stack_t **top, unsigned int counter);
-void _div(stack_t **top, unsigned int counter);
-void _mul(stack_t **top, unsigned int counter);
-void _mod(stack_t **top, unsigned int counter);
+void _add(stack_t **top, unsigned int linenum);
+void _sub(stack_t **top, unsigned int linenum);
+void _div(stack_t **top, unsigned int linenum);
+void _mul(stack_t **top, unsigned int linenum);
+void _mod(stack_t **top, unsigned int linenum);
 
 
 char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 ssize_t getstdin(char **lineptr, int file);
 char  *clean_line(char *content);
-int execute(char *content, stack_t **top, unsigned int counter, FILE *file);
-void _nop(stack_t **top, unsigned int counter);
+int execute(char *content, stack_t **top, unsigned int linenum, FILE *script);
+void _nop(stack_t **top, unsigned int linenum);
 void free_stack(stack_t *top);
 void addnode(stack_t **top, int n);
 void addqueue(stack_t **top, int n);
-void _queue(stack_t **top, unsigned int counter);
-void _stack(stack_t **top, unsigned int counter);
+void _queue(stack_t **top, unsigned int linenum);
+void _stack(stack_t **top, unsigned int linenum);
 #endif

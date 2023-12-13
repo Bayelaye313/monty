@@ -22,13 +22,13 @@ void free_stack(stack_t *top)
 /**
 * _stack - function that prints the top
 * @top: top of stack
-* @counter: line count
+* @line_num: line count
 *
 * Return: nothing
 */
-void _stack(stack_t **top, unsigned int counter)
+void _stack(stack_t **top, unsigned int line_num)
 {
 	(void)top;
-	(void)counter;
+	(void)line_num;
 	arg.linenum = 0;
 }
