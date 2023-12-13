@@ -37,6 +37,12 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * union montyfunctype - Union containing different function pointers
+ * @toponly: Function pointer for operations that only affect the top
+ * @pushmode: Function pointer for push operations with different modes
+ * @topbot: Function pointer for operations affecting both the top and bottom
+ */
 union montyfunctype
 {
 	void (*toponly)(stack_t **top);
@@ -44,17 +50,28 @@ union montyfunctype
 	void (*topbot)(stack_t **top, stack_t **bot);
 };
 
+/**
+ * struct optype - Structure representing an opcode and its associated function
+ * @opcode: The opcode string
+ * @func: Union of function pointers corresponding to the opcode
+ */
 typedef struct optype
 {
 	char *opcode;
 	union montyfunctype func;
 } optype;
 
+/**
+ * struct montyglob - Structure holding global variables for Monty interpreter
+ * @buffer: Buffer for reading lines from the script file
+ * @linenum: Line number being processed in the script
+ * @script: File pointer for the script file
+ */
 typedef struct montyglob
 {
 	char *buffer;
 	unsigned long linenum;
-	FILE* script;
+	FILE *script;
 } montyglob;
 
 /* from montyparse.c */

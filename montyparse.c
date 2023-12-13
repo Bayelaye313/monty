@@ -63,6 +63,7 @@ int isnumstr(char *str)
  *
  * Return: 0 if successful
  */
+int montyparse(optype *ops);
 int montyparse(optype *ops)
 {
 	size_t len = 0, val, mode = STACKMODE;
