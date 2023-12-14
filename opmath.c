@@ -39,16 +39,16 @@ void _sub(stack_t **top, unsigned int linenum)
  *
  * Return: nothing
  */
-void _mul(stack_t **top, __attribute__((unused))unsigned int linenum)
+void _mul(stack_t **top, unsigned int linenum)
 {
-	stack_t *h = *top;
-	int temp = h->next->n * h->n;
-
-	h->next->n = temp;
-	*top = h->next;
-	free(h);
+	if (*top == NULL || (*top)->next == NULL)
+	{
+		printf("L%d: can't mul, stack too short\n", linenum);
+		exit(EXIT_FAILURE);
+	}
+	(*top)->next->n *= (*top)->n;
+	_pop(top, linenum);
 }
-
 /**
  * _div - function that divides the top two elements of the stack
  * @top: double top pointer to the stack
@@ -58,25 +58,19 @@ void _mul(stack_t **top, __attribute__((unused))unsigned int linenum)
  */
 void _div(stack_t **top, unsigned int linenum)
 {
-	stack_t *h = *top;
-	int temp;
-
-	if (h->n == 0)
+	if (*top == NULL || (*top)->next == NULL)
 	{
-		fprintf(stderr, "L%d: division by zero\n", linenum);
-		fclose(arg.script);
-		free(arg.content);
-		free_stack(*top);
+		fprintf(stderr, "L%d: can't div, stack too short\n", linenum);
 		exit(EXIT_FAILURE);
 	}
-
-	temp = h->next->n / h->n;
-
-	h->next->n = temp;
-	*top = h->next;
-	free(h);
+	if ((*top)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", linenum);
+		exit(EXIT_FAILURE);
+	}
+	(*top)->next->n /= (*top)->n;
+	_pop(top, linenum);
 }
-
 /**
  * _mod - function that computes the remainder of the division
  * of the second top element of the stack by the top element of the stack
@@ -87,21 +81,16 @@ void _div(stack_t **top, unsigned int linenum)
  */
 void _mod(stack_t **top, unsigned int linenum)
 {
-	stack_t *h = *top;
-	int temp;
-
-	if (h->n == 0)
+	if (*top == NULL || (*top)->next == NULL)
 	{
-		fprintf(stderr, "L%d: division by zero\n", linenum);
-		fclose(arg.script);
-		free(arg.content);
-		free_stack(*top);
+		fprintf(stderr, "L%d: can't mod, stack too short\n", linenum);
 		exit(EXIT_FAILURE);
 	}
-
-	temp = h->next->n % h->n;
-
-	h->next->n = temp;
-	*top = h->next;
-	free(h);
+	if ((*top)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", linenum);
+		exit(EXIT_FAILURE);
+	}
+	(*top)->next->n %= (*top)->n;
+	_pop(top, linenum);
 }

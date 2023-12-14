@@ -93,7 +93,7 @@ void perform_operation(stack_t **top, unsigned int linenum,
 void _add(stack_t **top, unsigned int linenum);
 void _sub(stack_t **top, unsigned int linenum);
 void _div(stack_t **top, unsigned int linenum);
-void _mul(stack_t **top, __attribute__((unused))unsigned int linenum);
+void _mul(stack_t **top, unsigned int linenum);
 void _mod(stack_t **top, unsigned int linenum);
 
 
