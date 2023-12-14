@@ -65,7 +65,7 @@ void validate_arguments(int argc, char *argv[]);
 void init_args(void);
 void get_script(char *filename);
 char *parse_line(char *line);
-void get_instruction(char *op, stack_t **top, unsigned int linenum);
+int run(char *content, stack_t **top, unsigned int linenum, FILE *script);
 
 
 

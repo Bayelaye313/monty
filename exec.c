@@ -15,73 +15,69 @@ void validate_arguments(int argc, char *argv[])
 	}
 }
 /**
- * parse_line - Parses a line for an opcode and arguments.
- * @line: The line to be parsed.
- *
- * Return: Returns the opcode or NULL on failure.
+ * init_args - Initializes the global argument structure.
  */
-char *parse_line(char *line)
+void init_args(void)
 {
-	char *op_code;
-
-	op_code = strtok(line, "\n ");
-	if (op_code == NULL)
-		return (NULL);
-
-	return (op_code);
+	arg.tok = NULL;
+	arg.script = NULL;
+	arg.content = NULL;
+	arg.linenum = 0;
 }
+
 /**
- * get_instruction - Exécute la fonction correspondant à l'opcode.
- * @op: L'opcode à exécuter.
- * @top: Tête de la pile.
- * @linenum: Numéro de ligne.
- */
-void get_instruction(char *op, stack_t **top, unsigned int linenum);
-void get_instruction(char *op, stack_t **top, unsigned int linenum)
+* run - function that run_instructionss the opcode
+* @top: head stack linked list
+* @linenum: line count
+* @script: pointer to monty file stream
+* @content: line content
+*
+* Return: nothing
+*/
+int run(char *content, stack_t **top, unsigned int linenum, FILE *script);
+int run(char *content, stack_t **top, unsigned int linenum, FILE *script)
 {
 	instruction_t opst[] = {
-		{"push", _push},
-		{"pall", _pall},
-		{"pint", _pint},
-		{"pop", _pop},
-		{"swap", _swap},
-		{"add", _add},
-		{"nop", _nop},
-		{"sub", _sub},
-		{"div", _div},
-		{"mul", _mul},
-		{"mod", _mod},
-		{"pchar", _pchar},
-		{"pstr", _pstr},
-		{"rotl", _rotl},
-		{"rotr", _rotr},
-		{"queue", _queue},
-		{"stack", _stack},
-		{NULL, NULL}
-	};
-
+				{"push", _push},
+				{"pall", _pall},
+				{"pint", _pint},
+				{"pop", _pop},
+				{"swap", _swap},
+				{"add", _add},
+				{"nop", _nop},
+				{"sub", _sub},
+				{"div", _div},
+				{"mul", _mul},
+				{"mod", _mod},
+				{"pchar", _pchar},
+				{"pstr", _pstr},
+				{"rotl", _rotl},
+				{"rotr", _rotr},
+				{"queue", _queue},
+				{"stack", _stack},
+				{NULL, NULL}
+				};
 	unsigned int i = 0;
+	char *op;
 
+	op = strtok(content, " \n\t");
+	if (op && op[0] == '#')
+		return (0);
+	arg.tok = strtok(NULL, " \n\t");
 	while (opst[i].opcode && op)
 	{
 		if (strcmp(op, opst[i].opcode) == 0)
-		{
-			if (opst[i].f != NULL)
-				opst[i].f(top, linenum);
-			else
-				fprintf(stderr, "L%d: function not implemented for %s\n", linenum, op);
-
-			return;
+		{	opst[i].f(top, linenum);
+			return (0);
 		}
 		i++;
 	}
-
 	if (op && opst[i].opcode == NULL)
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", linenum, op);
-		fclose(arg.script);
-		free_arguments();
+	{ fprintf(stderr, "L%d: unknown instruction %s\n", linenum, op);
+		fclose(script);
+		free(content);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
+	return (1);
 }
