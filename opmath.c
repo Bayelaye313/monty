@@ -3,7 +3,7 @@
 /**
  * _add - adds top of stack and second top of stack
  *
- * @stack: pointer to linked list stack
+ * @top: pointer to linked list stack
  * @linenum: number of line opcode occurs on
  */
 void _add(stack_t **top, unsigned int linenum)
@@ -17,22 +17,21 @@ void _add(stack_t **top, unsigned int linenum)
 	_pop(top, linenum);
 }
 /**
- * _sub - function that subtracts nodes
- * @top: double top pointer to the stack
- * @linenum: line count
+ * _sub - subtracts top of stack and second top of stack
  *
- * Return: nothing
+ * @top: pointer to linked list stack
+ * @linenum: number of line opcode occurs on
  */
-void _sub(stack_t **top, __attribute__((unused))unsigned int linenum)
+void _sub(stack_t **top, unsigned int linenum)
 {
-	stack_t *temp = *top;
-	int sub = temp->next->n - temp->n;
-
-	temp->next->n = sub;
-	*top = temp->next;
-	free(temp);
+	if (*top == NULL || (*top)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", linenum);
+		exit(EXIT_FAILURE);
+	}
+	(*top)->next->n -= (*top)->n;
+	_pop(top, linenum);
 }
-
 /**
  * _mul - function that multiplies the top two elements of the stack
  * @top: double top pointer to the stack
