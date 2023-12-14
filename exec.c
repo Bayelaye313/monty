@@ -15,12 +15,12 @@ void validate_arguments(int argc, char *argv[])
 	}
 }
 /**
-* getting stream failed Handles the error when reading a file fails. 
-* @fileName: The name of the file that failed to open.
-*/
+ * getting stream failed Handles the error when reading a file fails.
+ * @fileName: The name of the file that failed to open.
+ */
 void getting_stream_failed(char *fileName)
 {
-	dprintf(stderr, "Error: Can't open file %s\n", fileName);
+	fprintf(stderr, "Error: Can't open file %s\n", fileName);
 	exit(EXIT_FAILURE);
 }
 /**
@@ -35,7 +35,7 @@ void get_script(char *filename)
 	if (fd == -1)
 		getting_stream_failed(filename);
 
-	arg.script = fdopen(fd, "r");
+	arg.script = fopen(fd, "r");
 	if (arg.script == NULL)
 	{
 		close(fd);
