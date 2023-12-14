@@ -48,12 +48,12 @@ return (0);
 /**
  * perform_operation - performs the specified arithmetic operation
  * @top: double pointer top to the stack
- * @line_num: line count
+ * @linenum: line count
  * @operation: function pointer to the arithmetic operation
  *
  * Return: nothing
  */
-void perform_operation(stack_t **top, unsigned int line_num,
+void perform_operation(stack_t **top, unsigned int linenum,
 								void (*operation)(stack_t **, int))
 {
 	stack_t *h;
@@ -68,12 +68,12 @@ void perform_operation(stack_t **top, unsigned int line_num,
 
 	if (length < 2)
 	{
-		fprintf(stderr, "L%d: stack too short\n", line_num);
+		fprintf(stderr, "L%d: stack too short\n", linenum);
 		fclose(arg.script);
 		free(arg.content);
 		free_stack(*top);
 		exit(EXIT_FAILURE);
 	}
 
-	operation(top, line_num);
+	operation(top, linenum);
 }

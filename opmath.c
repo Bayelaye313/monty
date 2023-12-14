@@ -1,22 +1,28 @@
 #include "monty.h"
 
 /**
- * _add - function that adds the top two elements of the stack
- * @top: double pointer top to the stack
- * @linenum: line count
+ * _add - add top two stack elements. error if < 2 elements
  *
- * Return: nothing
+ * @top: top of stack
+ * @linenum: count unused
  */
 void _add(stack_t **top, __attribute__((unused))unsigned int linenum)
 {
-	stack_t *h = *top;
-	int temp = h->n + h->next->n;
+	stack_t *ptr = *top;
+	long num;
 
-	h->next->n = temp;
-	*top = h->next;
-	free(h);
+	if (ptr == NULL || ptr->prev == NULL)
+		exit(EXIT_FAILURE);
+	else
+	{
+		num = ptr->n;
+		ptr = ptr->prev;
+		ptr->next = NULL;
+		free(*top);
+		*top = ptr;
+		ptr->n += num;
+	}
 }
-
 /**
  * _sub - function that subtracts nodes
  * @top: double top pointer to the stack
