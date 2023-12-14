@@ -53,3 +53,14 @@ void _rotr(stack_t **top, __attribute__((unused)) unsigned int linenum)
 	(*top)->prev = copy;
 	(*top) = copy;
 }
+/**
+ * error_exit - frees the stack and exits due to erro
+ * @stack: pointer to the head of the stack
+ *
+ */
+void error_exit(stack_t **top)
+{
+	if (*top)
+		free_stack(*top);
+	exit(EXIT_FAILURE);
+}

@@ -105,4 +105,5 @@ void addnode(stack_t **top, int n);
 void addqueue(stack_t **top, int n);
 void _queue(stack_t **top, unsigned int linenum);
 void _stack(stack_t **top, unsigned int linenum);
+void error_exit(stack_t **top);
 #endif
