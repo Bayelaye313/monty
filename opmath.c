@@ -4,17 +4,17 @@
  * _add - adds top of stack and second top of stack
  *
  * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * @linenum: number of line opcode occurs on
  */
-void _add(stack_t **stack, unsigned int line_number)
+void _add(stack_t **top, unsigned int linenum)
 {
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (*top == NULL || (*top)->next == NULL)
 	{
-		printf("L%d: can't add, stack too short\n", line_number);
-		error_exit(stack);
+		fprintf(stderr, "L%d: can't add, stack too short\n", linenum);
+		exit(EXIT_FAILURE);
 	}
-	(*stack)->next->n += (*stack)->n;
-	_pop(stack, line_number);
+	(*top)->next->n += (*top)->n;
+	_pop(top, linenum);
 }
 /**
  * _sub - function that subtracts nodes
