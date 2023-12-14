@@ -43,7 +43,7 @@ void _mul(stack_t **top, unsigned int linenum)
 {
 	if (*top == NULL || (*top)->next == NULL)
 	{
-		printf("L%d: can't mul, stack too short\n", linenum);
+		fprintf(stderr, "L%d: can't mul, stack too short\n", linenum);
 		exit(EXIT_FAILURE);
 	}
 	(*top)->next->n *= (*top)->n;
