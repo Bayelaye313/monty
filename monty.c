@@ -45,3 +45,35 @@ int main(int argc, char *argv[])
 	fclose(file);
 return (0);
 }
+/**
+ * perform_operation - performs the specified arithmetic operation
+ * @top: double pointer top to the stack
+ * @line_num: line count
+ * @operation: function pointer to the arithmetic operation
+ *
+ * Return: nothing
+ */
+void perform_operation(stack_t **top, unsigned int line_num,
+								void (*operation)(stack_t **, int))
+{
+	stack_t *h;
+	int length = 0;
+
+	h = *top;
+	while (h)
+	{
+		h = h->next;
+		length++;
+	}
+
+	if (length < 2)
+	{
+		fprintf(stderr, "L%d: stack too short\n", line_num);
+		fclose(arg.script);
+		free(arg.content);
+		free_stack(*top);
+		exit(EXIT_FAILURE);
+	}
+
+	operation(top, line_num);
+}
