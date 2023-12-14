@@ -20,14 +20,9 @@ int main(int argc, char *argv[])
 	ssize_t read_line = 1;
 	stack_t *stack = NULL;
 	unsigned int linenum = 0;
+
 	validate_arguments(argc, argv);
-	file = fopen(argv[1], "r");
-	arg.script = file;
-	if (!file)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
+	get_script(argv[1]);
 	while (read_line > 0)
 	{
 		content = NULL;

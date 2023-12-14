@@ -14,6 +14,22 @@ void validate_arguments(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 }
+/**
+ * get_script - Opens and sets the script file.
+ * @filename: Name of the file to open.
+ */
+void get_script(char *filename)
+{
+	FILE *file = fopen(filename, "r");
+
+	if (!file)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
+		exit(EXIT_FAILURE);
+	}
+
+	arg.script = file;
+}
 
 /**
 * execute - function that executes the opcode
