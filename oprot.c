@@ -35,21 +35,20 @@ void _rotl(stack_t **top, __attribute__((unused)) unsigned int linenum)
  */
 void _rotr(stack_t **top, __attribute__((unused)) unsigned int linenum)
 {
-	if (*top != NULL && (*top)->next != NULL)
+	stack_t *new_top;
+
+	new_top = *top;
+	if (*top == NULL || (*top)->next == NULL)
 	{
-		stack_t *current = *top;
-		stack_t *new_top = NULL;
-
-		while (current->next != NULL)
-		{
-			new_top = current;
-			current = current->next;
-		}
-
-		(*top)->prev = current;
-		current->next = *top;
-		current->prev->next = NULL;
-		current->prev = NULL;
-		*top = current;
+		return;
 	}
+	while (new_top->next)
+	{
+		new_top = new_top->next;
+	}
+	new_top->next = *top;
+	new_top->prev->next = NULL;
+	new_top->prev = NULL;
+	(*top)->prev = new_top;
+	(*top) = new_top;
 }
