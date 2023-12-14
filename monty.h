@@ -58,6 +58,17 @@ typedef struct arg_s
 }  arg_t;
 extern arg_t arg;
 
+/*main func*/
+void free_arguments(void);
+void validate_arguments(int argc, char *argv[]);
+void init_args(void);
+void get_script(char *filename);
+char *parse_line(char *line);
+void get_instruction(char *op, stack_t **top, unsigned int linenum);
+int execute(char *content, stack_t **top, unsigned int linenum, FILE *script);
+
+
+
 /* opstack.c */
 void _push(stack_t **top, unsigned int linenum);
 void _pop(stack_t **top, unsigned int linenum);
@@ -82,7 +93,6 @@ void _mod(stack_t **top, unsigned int linenum);
 char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 ssize_t getstdin(char **lineptr, int file);
 char  *clean_line(char *content);
-int execute(char *content, stack_t **top, unsigned int linenum, FILE *script);
 void _nop(stack_t **top, unsigned int linenum);
 void free_stack(stack_t *top);
 void addnode(stack_t **top, int n);

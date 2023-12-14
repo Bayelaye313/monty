@@ -1,51 +1,60 @@
 #include "monty.h"
+#include <stdlib.h>
 #include <stdio.h>
 #define _GNU_SOURCE
-#include <stdlib.h>
+/**
+ * parse_line - Parses a line for an opcode and arguments.
+ * @line: The line to be parsed.
+ *
+ * Return: Returns the opcode or NULL on failure.
+ */
+char *parse_line(char *line)
+{
+	char *op_code;
 
-arg_t arg = {NULL, NULL, NULL, 0};
+	op_code = strtok(line, "\n ");
+	if (op_code == NULL)
+		return (NULL);
+
+	return (op_code);
+}
 
 /**
-* main - function for monty code interpreter
-* @argc: argument count
-* @argv: argument value
-*
-* Return: 0 on success
-*/
+ * main - Entry point for the Monty code interpreter.
+ * @argc: Number of command-line arguments.
+ * @argv: Array of command-line argument strings.
+ *
+ * Return: Returns 0 on success.
+ */
 int main(int argc, char *argv[])
 {
-	char *content;
-	FILE *file;
-	size_t size = 0;
-	ssize_t read_line = 1;
+	arg_t arg = {NULL, NULL, NULL, 0};
+
+	char *content, *op;
 	stack_t *stack = NULL;
 	unsigned int linenum = 0;
 
-	if (argc != 2)
+	validate_arguments(argc, argv);
+	init_args();
+	get_script(argv[1]);
+
+	while (getline(&content, arg.script, &linenum) > 0)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-	file = fopen(argv[1], "r");
-	arg.script = file;
-	if (!file)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
-	while (read_line > 0)
-	{
-		content = NULL;
-		read_line = getline(&content, &size, file);
 		arg.content = content;
-		linenum++;
-		if (read_line > 0)
+		if (content[0] == '#' || content[0] == '\n')
 		{
-			execute(content, &stack, linenum, file);
+			free(content);
+			continue;
 		}
+
+		op = parse_line(content);
+		get_instruction(op, &stack, linenum);
+
 		free(content);
 	}
+
 	free_stack(stack);
-	fclose(file);
-return (0);
+	fclose(arg.script);
+	free_arguments();
+	return (0);
 }
