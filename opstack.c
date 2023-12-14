@@ -64,17 +64,17 @@ void _push(stack_t **top, unsigned int linenum)
 /**
 * _pop - function that prints the top of the stack
 * @top: double top pointer to the stack
-* @line_num: line count
+* @linenum: line count
 *
 * Return: nothing
 */
-void _pop(stack_t **top, unsigned int line_num)
+void _pop(stack_t **top, unsigned int linenum)
 {
 	stack_t *run;
 
 	if (*top == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_num);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", linenum);
 		fclose(arg.script);
 		free(arg.content);
 		free_stack(*top);
@@ -88,11 +88,11 @@ void _pop(stack_t **top, unsigned int line_num)
 /**
 * _swap - function that swaps the top two elements of the stack
 * @top: top of stack
-* @line_num: line count
+* @linenum: line count
 *
 * Return: nothing
 */
-void _swap(stack_t **top, unsigned int line_num)
+void _swap(stack_t **top, unsigned int linenum)
 {
 	stack_t *h;
 	int temp;
@@ -100,7 +100,7 @@ void _swap(stack_t **top, unsigned int line_num)
 	h = *top;
 	if (h == NULL || h->next == NULL)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_num);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", linenum);
 		exit(EXIT_FAILURE);
 	}
 	temp = h->n;

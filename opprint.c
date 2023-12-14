@@ -74,14 +74,14 @@ stack_t *run;
 * _pstr - function that prints the string starting at the top of the stack,
 * followed by a new
 * @top: top of stack
-* @line_num: line count
+* @linenum: line count
 *
 * Return: nothing
 */
-void _pstr(stack_t **top, unsigned int line_num)
+void _pstr(stack_t **top, unsigned int linenum)
 {
 	stack_t *h;
-	(void)line_num;
+	(void)linenum;
 
 	h = *top;
 	while (h)

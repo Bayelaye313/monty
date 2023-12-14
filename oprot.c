@@ -30,7 +30,7 @@ void _rotl(stack_t **top,  __attribute__((unused)) unsigned int linenum)
 /**
 * _rotr - function that rotates the stack to the bottom
 * @top: stack top of the stack
-* @line_num: line count
+* @linenum: line count
 *
 * Return: nothing
 */

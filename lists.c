@@ -46,14 +46,14 @@ void free_stack(stack_t *top)
 /**
 * _stack - function that prints the top
 * @top: top of stack
-* @line_num: line count
+* @linenum: line count
 *
 * Return: nothing
 */
-void _stack(stack_t **top, unsigned int line_num)
+void _stack(stack_t **top, unsigned int linenum)
 {
 	(void)top;
-	(void)line_num;
+	(void)linenum;
 	arg.linenum = 0;
 }
 #include "monty.h"
