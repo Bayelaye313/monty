@@ -66,7 +66,6 @@ void init_args(void);
 void get_script(char *filename);
 char *parse_line(char *line);
 void get_instruction(char *op, stack_t **top, unsigned int linenum);
-int execute(char *content, stack_t **top, unsigned int linenum, FILE *script);
 
 
 

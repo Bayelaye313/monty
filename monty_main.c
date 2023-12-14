@@ -14,10 +14,8 @@ arg_t arg = {NULL, NULL, NULL, 0};
 */
 int main(int argc, char *argv[])
 {
-	char *content;
+	char *content, *op;
 	FILE *file;
-	size_t size = 0;
-	ssize_t read_line = 1;
 	stack_t *stack = NULL;
 	unsigned int linenum = 0;
 
@@ -29,19 +27,23 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (read_line > 0)
+	while (getline(&content, arg.script, &linenum) > 0)
 	{
-		content = NULL;
-		read_line = getline(&content, &size, file);
 		arg.content = content;
-		linenum++;
-		if (read_line > 0)
+		if (content[0] == '#' || content[0] == '\n')
 		{
-			execute(content, &stack, linenum, file);
+			free(content);
+			continue;
 		}
+
+		op = parse_line(content);
+		get_instruction(op, &stack, linenum);
+
 		free(content);
 	}
+
 	free_stack(stack);
-	fclose(file);
-return (0);
+	fclose(arg.script);
+	free_arguments();
+	return (0);
 }
