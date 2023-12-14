@@ -85,6 +85,7 @@ void _pall(stack_t **top, unsigned int linenum);
 void _pint(stack_t **top, unsigned int linenum);
 void _pchar(stack_t **top, unsigned int linenum);
 void _pstr(stack_t **top, unsigned int linenum);
+void _nop(stack_t **top, unsigned int linenum);
 
 /* opmath.c */
 void _add(stack_t **top, unsigned int linenum);
@@ -97,7 +98,6 @@ void _mod(stack_t **top, unsigned int linenum);
 char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
 ssize_t getstdin(char **lineptr, int file);
 char  *clean_line(char *content);
-void _nop(stack_t **top, unsigned int linenum);
 void free_stack(stack_t *top);
 void addnode(stack_t **top, int n);
 void addqueue(stack_t **top, int n);
