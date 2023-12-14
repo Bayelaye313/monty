@@ -15,34 +15,6 @@ void validate_arguments(int argc, char *argv[])
 	}
 }
 /**
- * getting stream failed Handles the error when reading a file fails.
- * @fileName: The name of the file that failed to open.
- */
-void getting_stream_failed(char *fileName)
-{
-	fprintf(stderr, "Error: Can't open file %s\n", fileName);
-	exit(EXIT_FAILURE);
-}
-/**
- * get_script - Opens and sets the script file.
- * @filename: Name of the file to open.
- */
-void get_script(char *filename)
-{
-	int fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		getting_stream_failed(filename);
-
-	arg.script = fopen(fd, "r");
-	if (arg.script == NULL)
-	{
-		close(fd);
-		getting_stream_failed(filename);
-	}
-}
-/**
  * init_args - Initializes the global argument structure.
  */
 void init_args(void)

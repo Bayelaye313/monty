@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 	ssize_t read_line = 1;
 	stack_t *stack = NULL;
 	unsigned int linenum = 0;
+
 	validate_arguments(argc, argv);
 	file = fopen(argv[1], "r");
 	arg.script = file;
