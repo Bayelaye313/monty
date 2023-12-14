@@ -66,6 +66,10 @@ void init_args(void);
 void get_script(char *filename);
 char *parse_line(char *line);
 int run(char *content, stack_t **top, unsigned int linenum, FILE *script);
+void read_file(char *filename, stack_t **top);
+typedef void (*instruct_func)(stack_t **top, unsigned int linenum);
+instruct_func get_op_func(char *str);
+
 
 
 
