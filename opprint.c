@@ -60,7 +60,7 @@ void _pall(stack_t **top, __attribute__ ((unused)) unsigned int linenum)
 */
 void _pint(stack_t **top, unsigned int linenum)
 {
-stack_t *run;
+	stack_t *run;
 
 	run = *top;
 	if (run == NULL)
