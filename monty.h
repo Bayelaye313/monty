@@ -90,7 +90,7 @@ void _nop(stack_t **top, unsigned int linenum);
 /* opmath.c */
 void perform_operation(stack_t **top, unsigned int linenum,
 								void (*operation)(stack_t **, int));
-void _add(stack_t **top, __attribute__((unused))unsigned int linenum);
+void _add(stack_t **stack, unsigned int line_number);
 void _sub(stack_t **top, __attribute__((unused))unsigned int linenum);
 void _div(stack_t **top, unsigned int linenum);
 void _mul(stack_t **top, __attribute__((unused))unsigned int linenum);

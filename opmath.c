@@ -1,27 +1,20 @@
 #include "monty.h"
 
 /**
- * _add - add top two stack elements. error if < 2 elements
+ * _add - adds top of stack and second top of stack
  *
- * @top: top of stack
- * @linenum: count unused
+ * @stack: pointer to linked list stack
+ * @line_number: number of line opcode occurs on
  */
-void _add(stack_t **top, __attribute__((unused))unsigned int linenum)
+void _add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *ptr = *top;
-	long num;
-
-	if (ptr == NULL || ptr->prev == NULL)
-		exit(EXIT_FAILURE);
-	else
+	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		num = ptr->n;
-		ptr = ptr->prev;
-		ptr->next = NULL;
-		free(*top);
-		*top = ptr;
-		ptr->n += num;
+		printf("L%d: can't add, stack too short\n", line_number);
+		error_exit(stack);
 	}
+	(*stack)->next->n += (*stack)->n;
+	_pop(stack, line_number);
 }
 /**
  * _sub - function that subtracts nodes
