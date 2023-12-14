@@ -30,6 +30,16 @@ void get_script(char *filename)
 
 	arg.script = file;
 }
+/**
+ * init_args - Initializes the global argument structure.
+ */
+void init_args(void)
+{
+	arg.tok = NULL;
+	arg.script = NULL;
+	arg.content = NULL;
+	arg.linenum = 0;
+}
 
 /**
 * execute - function that executes the opcode

@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
 	unsigned int linenum = 0;
 
 	validate_arguments(argc, argv);
+	init_args();
 	get_script(argv[1]);
 	while (read_line > 0)
 	{
